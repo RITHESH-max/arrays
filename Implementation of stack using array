@@ -1,0 +1,84 @@
+//R RITESH
+//1NT21IS121
+
+//importing libraries
+#include <stdio.h>
+#include <stdlib.h>
+#define size 4 // defined the array size 
+
+//defining variable push pop display and exit
+int top = -1;
+int stck[size];
+void push();
+void pop();
+void display();
+int main()
+{
+	int choice;
+	while(1)
+	{   //displaying input instruction 
+		printf("\nSelect the operation\n");
+		printf("**************************\n");
+		printf(" 1. Push\n 2. Pop\n 3. Display\n 4. Exit\n");
+		printf("**************************\n");
+		scanf("%d", &choice); //saving the input in choice variable
+		switch (choice)
+		{   // calling functions
+			case 1: push(); break;
+			case 2: pop(); break;
+			case 3: display(); break;
+			case 4: exit(0);
+			default: printf("Invalid choice\n");
+			
+		}
+			
+	}
+}
+
+//defined push
+void push()
+{
+	int n;
+	if (top == size-1) // if stack is full it will display overflow 
+	{
+		printf("Stack Overflow\n");
+	}
+	else
+	{   // inserting elements in stack
+		printf("Enter the element to be inserted\n");
+		scanf("%d", &n);
+		top++;
+		stck[top] = n;
+	}
+}
+
+void pop()
+{
+	if(top == -1) // if stack is empty it will display underflow
+	{
+		printf("Stack underflow\n");
+	}
+	else
+	{   // removing elements from stack
+		printf("Removed element is %d\n", stck[top]);
+		top--;
+	}
+}
+
+void display()
+{
+	if (top == -1) // if stack is empty it will display underflow 
+	{
+		printf("Stack underflow\n");
+	}
+	else
+	{   // displaying elements in stack
+		printf("Elements in the stack are:\n");
+		for (int i = top; i >= 0; i--)
+		{
+		printf("%d\t", stck[i]);
+		}
+		printf("\n");
+	}
+}
+
