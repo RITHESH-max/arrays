@@ -1,0 +1,112 @@
+// R Ritesh
+// 1NT21IS121
+
+// importing libraries
+#include <stdio.h>
+#include <stdlib.h>
+
+// defining function
+void push();
+void pop();
+void display();
+
+// creating a structure stck
+struct stck
+{
+	int val;
+	struct stck *next;
+};
+struct stck *head;
+
+// defining push function
+void push()
+{
+	int val;
+	struct stck *ptr = (struct stck*)malloc(sizeof(struct stck));
+	if (ptr == NULL)
+	{
+		printf("Not able to push the element\n");
+	}
+	else
+	{   // printing the input details
+		printf("Enter the value\n");
+		scanf("%d", &val);
+		if (head == NULL)
+		{
+			ptr->val = val;
+			ptr->next = NULL;
+			head = ptr;
+		}
+		else
+		{
+			ptr->val = val;
+			ptr->next = head;
+			head = ptr;
+		}
+		printf("Item pushed\n");
+	}
+}
+
+//defining pop function
+void pop()
+{
+	int item;
+	struct stck *ptr;
+	// if stack is empty
+	if (head == NULL)
+	{
+		printf("Underflow\n");
+	}
+	else
+	{   // element poped
+		item = head-> val;
+		ptr = head;
+		head = head->next;
+		free(ptr);
+		printf("Item popped %d\n", item);
+	}
+}
+
+void display()
+{
+	struct stck *ptr;
+	ptr = head;
+	// if stack is empty
+	if(ptr == NULL)
+	{
+		printf("Stack Underflow\n");
+	}
+	else
+	{   // displaying the stack elements
+		printf("Printing stack element: \n");
+		while(ptr != NULL)
+		{
+			printf("%d\t", ptr->val);
+			printf("\n");
+			ptr= ptr->next;
+		}
+	}
+}
+
+int main()
+{
+	int choice;
+	while(1)
+	{   // displaying the input instruction
+		printf("Select the operation\n");
+		printf("*****************************\n");
+		printf(" 1. Push\n 2. Pop\n 3. Display\n 4. Exit\n");
+		printf("*****************************\n");
+		scanf("%d", &choice);
+		switch(choice)
+		{   // calling functions
+			case 1: push(); break;
+			case 2: pop(); break;
+			case 3: display(); break;
+			case 4: exit(0);
+			default: printf("Invalid choice\n");
+			
+		}
+	}
+}
+
